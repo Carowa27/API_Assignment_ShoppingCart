@@ -1,9 +1,11 @@
 type Query {
+  getProductById(productId: ID!): Product
   getShoppingCartById(shoppingCartId: ID!): ShoppingCart
 }
 type Mutation {
+  createProduct(productName: String!, unitPrice: Float!): Product
   createShoppingCart: ShoppingCart
-  createShoppingCartItem: ShoppingCartItem
+  # createShoppingCartItem: ShoppingCartItem
   addItemToShoppingCart(input: ShoppingCartItemInput): ShoppingCart
   # updateShoppingCartWithNewItem: ShoppingCart
   deleteAItemFromShoppingCart: DeleteResourceResponse
@@ -29,22 +31,17 @@ type ShoppingCart {
 #   product: Product
 #   quantity: Int
 # }
-# input AddItemToShoppingCartInput {
-#   product: Product!
-#   shoppingCartId: ID!
-# }
-interface Product {
+type Product {
   productId: ID
   productName: String
   unitPrice: Float
 }
-type ShoppingCartItem implements Product {
+type ShoppingCartItem {
   productId: ID
   productName: String
   unitPrice: Float
   quantity: Int
 }
-
 input ShoppingCartItemInput {
   productId: ID!
   shoppingCartId: ID!
