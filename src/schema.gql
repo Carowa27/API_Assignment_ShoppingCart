@@ -1,11 +1,51 @@
 type Query {
-
+  getShoppingCartById(shoppingCartId: ID!): ShoppingCart
 }
 type Mutation {
-
+  createShoppingCart: ShoppingCart
+  createShoppingCartItem: ShoppingCartItem
+  addItemToShoppingCart(input: ShoppingCartItemInput): ShoppingCart
+  # updateShoppingCartWithNewItem: ShoppingCart
+  deleteAItemFromShoppingCart: DeleteResourceResponse
+  deleteAllItemsFromShoppingCart: DeleteResourceResponse
 }
 
 type DeleteResourceResponse {
   deletedXId: ID
   success: Boolean
+}
+type ShoppingCart {
+  shoppingCartId: ID
+  shoppingCartItems: [ShoppingCartItem]
+  totalPrice: Float
+}
+# type Product {
+#   productId: ID
+#   productName: String
+#   unitPrice: Float
+# }
+# type ShoppingCartItem {
+#   shoppingCartId: ID
+#   product: Product
+#   quantity: Int
+# }
+# input AddItemToShoppingCartInput {
+#   product: Product!
+#   shoppingCartId: ID!
+# }
+interface Product {
+  productId: ID
+  productName: String
+  unitPrice: Float
+}
+type ShoppingCartItem implements Product {
+  productId: ID
+  productName: String
+  unitPrice: Float
+  quantity: Int
+}
+
+input ShoppingCartItemInput {
+  productId: ID!
+  shoppingCartId: ID!
 }

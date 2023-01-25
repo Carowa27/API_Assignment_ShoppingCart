@@ -2,7 +2,7 @@
 
 ## description
 
-The goal is to create a GraphQL API for a shopping cart using NodeJS and Apollo Server.
+The assignment is to create a GraphQL API for a shopping cart using NodeJS and Apollo Server.
 
 With the API you should be able to send requests for:
 
