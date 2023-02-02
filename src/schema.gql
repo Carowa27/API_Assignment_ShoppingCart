@@ -6,14 +6,14 @@ type Mutation {
   createProduct(productName: String!, unitPrice: Float!): Product
   createShoppingCart: ShoppingCart
   # createShoppingCartItem: ShoppingCartItem
-  addItemToShoppingCart(input: ShoppingCartItemInput): ShoppingCart
-  # updateShoppingCartWithNewItem: ShoppingCart
-  deleteAItemFromShoppingCart: DeleteResourceResponse
-  deleteAllItemsFromShoppingCart: DeleteResourceResponse
+  addItemToShoppingCart(input: ShoppingInputIds): ShoppingCart
+  removeItemToShoppingCart(input: ShoppingInputIds): ShoppingCart
+  deleteAnItemFromShoppingCart(input: ShoppingInputIds): DeleteResourceResponse
+  deleteShoppingCart(shoppingCartId: ID!): DeleteResourceResponse
 }
 
 type DeleteResourceResponse {
-  deletedXId: ID
+  deletedId: ID
   success: Boolean
 }
 type ShoppingCart {
@@ -21,16 +21,6 @@ type ShoppingCart {
   shoppingCartItems: [ShoppingCartItem]
   totalPrice: Float
 }
-# type Product {
-#   productId: ID
-#   productName: String
-#   unitPrice: Float
-# }
-# type ShoppingCartItem {
-#   shoppingCartId: ID
-#   product: Product
-#   quantity: Int
-# }
 type Product {
   productId: ID
   productName: String
@@ -42,7 +32,10 @@ type ShoppingCartItem {
   unitPrice: Float
   quantity: Int
 }
-input ShoppingCartItemInput {
+input ShoppingInputIds {
   productId: ID!
   shoppingCartId: ID!
 }
+# enum ProductName{
+#   "ProductNamn"
+# }

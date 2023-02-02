@@ -5,3 +5,5 @@ exports.checkingExistence = async (dataPath) =>
 
 exports.readJSON = async (dataPath) =>
   JSON.parse(await fsPromises.readFile(dataPath, { encoding: "utf-8" }));
+
+exports.deleteCart = async (filePath) => await fsPromises.unlink(filePath);
