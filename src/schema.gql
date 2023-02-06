@@ -3,12 +3,9 @@ type Query {
   getShoppingCartById(shoppingCartId: ID!): ShoppingCart
 }
 type Mutation {
-  createProduct(productName: String!, unitPrice: Float!): Product
   createShoppingCart: ShoppingCart
-  # createShoppingCartItem: ShoppingCartItem
   addItemToShoppingCart(input: ShoppingInputIds): ShoppingCart
-  removeItemToShoppingCart(input: ShoppingInputIds): ShoppingCart
-  deleteAnItemFromShoppingCart(input: ShoppingInputIds): DeleteResourceResponse
+  removeItemFromShoppingCart(input: ShoppingInputIds): ShoppingCart
   deleteShoppingCart(shoppingCartId: ID!): DeleteResourceResponse
 }
 
@@ -36,6 +33,3 @@ input ShoppingInputIds {
   productId: ID!
   shoppingCartId: ID!
 }
-# enum ProductName{
-#   "ProductNamn"
-# }
